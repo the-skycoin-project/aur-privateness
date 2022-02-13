@@ -1,12 +1,13 @@
 # Maintainer: Moses Narrow <moe_narrow@use.startmail.com>
 pkgname=privateness
-_pkgname=${pkgname}
+_pkgname=privateness
+_pkgname1=skycoin
 _githuborg=NESS-Network
 _githuborg1=skycoin
 pkgdesc="NESS Core and Wallet. privateness.network. debian package"
-pkgver=0.27.1
+pkgver='0.27.1'
 _pkgver=${pkgver}
-pkgrel=5
+pkgrel=1
 _pkgrel=${pkgrel}
 arch=('x86_64' 'aarch64' 'armv8' 'armv7' 'armv7l' 'armv7h' 'armv6h' 'armhf' 'armel' 'arm')
 _pkgarch=$(dpkg --print-architecture)
@@ -14,9 +15,9 @@ _pkggopath="github.com/${_githuborg}/${_pkgname}"
 _pkggopath1="github.com/${_githuborg1}/${_pkgname1}"
 url="https://${_pkggopath}"
 _url1="https://${_pkggopath1}"
-makedepends=('git' 'go' 'musl' 'kernel-headers-musl' 'dpkg')
+makedepends=('git' 'go' 'musl' 'kernel-headers-musl')
 source=("git+${_url1}.git#branch=${BRANCH:-develop}"
-"git+${url}.git"
+"git+${url}.git#branch=${BRANCH:-karen}"
 "privateness.png"
 "com.privateness.Privateness.desktop")
 sha256sums=('SKIP'
@@ -25,10 +26,8 @@ sha256sums=('SKIP'
             'd2f7c042c64477ddede76734cc3316a754b70ea6c091fbc11a92e94de2b1e2d1')
 
 	prepare() {
-		#verify PKGBUILD signature
-		#gpg --verify ${srcdir}/PKGBUILD.sig ../PKGBUILD
-    mkdir -p ${srcdir}/go/src/github.com/${_githuborg}/ ${srcdir}/go/bin
-    ln -rTsf ${srcdir}/${_pkgname} ${srcdir}/go/src/${_pkggopath}
+    mkdir -p ${srcdir}/go/src/github.com/${_githuborg1}/ ${srcdir}/go/bin
+    ln -rTsf ${srcdir}/${_pkgname1} ${srcdir}/go/src/${_pkggopath1}
   }
 
 build() {
